@@ -1,12 +1,14 @@
 body{
     background-color: #F5F5F5;
+    padding-left: 20px;
 }
 
 hr {            
     border-color: #FE7E6D;
     border-style: none;    
     border-top-style: dotted;
-    border-width: 6px;    
+    border-width: 6px;
+    margin: 50px 350px;    
     width: 7%;
                
 }
@@ -23,7 +25,15 @@ img {
     border: 2px solid;
     border-color: #2A6171;
     border-radius: 50%;
-    height: 100px;
+    height: 110px;
     
+}
+
+.introduction{
+    width: 55%
+}
+
+.skills-table {
+    margin-left: 70px;
 }
  
