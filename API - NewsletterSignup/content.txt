@@ -1,0 +1,3 @@
+This is a Newsletter Sign Up application project.
+It uses the mailchimp API to store subscribers data and it 
+is deployed with heroku at: https://damp-brook-93404.herokuapp.com/ .
