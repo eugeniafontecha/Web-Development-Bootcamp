@@ -41,6 +41,12 @@ userSchema.plugin(findOrCreate);
 
 const User = new mongoose.model("user", userSchema);
 
+const secretSchema = new mongoose.Schema({
+    secret: String
+});
+
+const Secret = new mongoose.model("secret", secretSchema);
+
 passport.use(User.createStrategy());
 
 // creates cookie
@@ -80,7 +86,6 @@ function(req, res) {
 res.redirect("/secrets");
 });
 
-
 app.get("/login", function(req, res) {
     res.render("login");
 });
@@ -91,7 +96,23 @@ app.get("/register", function(req, res) {
 
 app.get("/secrets", function(req, res) {
     if (req.isAuthenticated()) {
-        res.render("secrets");
+
+        Secret.find(function(err, secrets) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("secrets", {secrets: secrets});
+            }
+        });
+        
+    } else {
+        res.redirect("/login");
+    }
+});
+
+app.get("/submit", function(req, res) {
+    if (req.isAuthenticated()) {
+        res.render("submit");
     } else {
         res.redirect("/login");
     }
@@ -135,8 +156,16 @@ app.post("/login", function(req, res) {
     });
 });
 
+app.post("/submit", function(req, res) {
+    const submittedSecret = new Secret({
+        secret: req.body.secret
+    });
 
-
+    submittedSecret.save( function() {
+        res.redirect("/secrets");
+    });    
+    
+});
 
 
 app.listen(3000, function() {
