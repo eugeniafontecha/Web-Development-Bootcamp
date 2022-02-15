@@ -31,7 +31,13 @@ function App() {
             <Header />
             <InputArea onClick={addNote}/>
             {notes.map((note,index) => (
-                <Note key={index} id={index} onClick={deleteNote} title={note.title} content={note.content} />
+                <Note 
+                    key={index}
+                    id={index}
+                    onClick={deleteNote}
+                    title={note.title}
+                    content={note.content} 
+                />
             ))}
             <Footer />
         </div>
